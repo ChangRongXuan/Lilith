@@ -22,7 +22,7 @@ const listConfigurations = list({
     }),
     writer: relationship({
       ref: 'Author.gallery',
-      many: true,
+      many: false,
       label: '相關作者',
     }),
   },

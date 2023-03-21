@@ -2032,13 +2032,7 @@ type Gallery {
   dataCount(where: DataSetWhereInput! = {}): Int
   link: String
   heroImage: Photo
-  writer(
-    where: AuthorWhereInput! = {}
-    orderBy: [AuthorOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Author!]
-  writerCount(where: AuthorWhereInput! = {}): Int
+  writer: Author
   createdAt: DateTime
   updatedAt: DateTime
   createdBy: User
@@ -2057,7 +2051,7 @@ input GalleryWhereInput {
   data: DataSetManyRelationFilter
   link: StringFilter
   heroImage: PhotoWhereInput
-  writer: AuthorManyRelationFilter
+  writer: AuthorWhereInput
   createdAt: DateTimeNullableFilter
   updatedAt: DateTimeNullableFilter
   createdBy: UserWhereInput
@@ -2075,11 +2069,17 @@ input GalleryUpdateInput {
   data: DataSetRelateToManyForUpdateInput
   link: String
   heroImage: PhotoRelateToOneForUpdateInput
-  writer: AuthorRelateToManyForUpdateInput
+  writer: AuthorRelateToOneForUpdateInput
   createdAt: DateTime
   updatedAt: DateTime
   createdBy: UserRelateToOneForUpdateInput
   updatedBy: UserRelateToOneForUpdateInput
+}
+
+input AuthorRelateToOneForUpdateInput {
+  create: AuthorCreateInput
+  connect: AuthorWhereUniqueInput
+  disconnect: Boolean
 }
 
 input GalleryUpdateArgs {
@@ -2091,11 +2091,16 @@ input GalleryCreateInput {
   data: DataSetRelateToManyForCreateInput
   link: String
   heroImage: PhotoRelateToOneForCreateInput
-  writer: AuthorRelateToManyForCreateInput
+  writer: AuthorRelateToOneForCreateInput
   createdAt: DateTime
   updatedAt: DateTime
   createdBy: UserRelateToOneForCreateInput
   updatedBy: UserRelateToOneForCreateInput
+}
+
+input AuthorRelateToOneForCreateInput {
+  create: AuthorCreateInput
+  connect: AuthorWhereUniqueInput
 }
 
 type Project {
@@ -2639,12 +2644,6 @@ input QuoteUpdateInput {
   updatedBy: UserRelateToOneForUpdateInput
 }
 
-input AuthorRelateToOneForUpdateInput {
-  create: AuthorCreateInput
-  connect: AuthorWhereUniqueInput
-  disconnect: Boolean
-}
-
 input QuoteUpdateArgs {
   where: QuoteWhereUniqueInput!
   data: QuoteUpdateInput!
@@ -2662,11 +2661,6 @@ input QuoteCreateInput {
   updatedAt: DateTime
   createdBy: UserRelateToOneForCreateInput
   updatedBy: UserRelateToOneForCreateInput
-}
-
-input AuthorRelateToOneForCreateInput {
-  create: AuthorCreateInput
-  connect: AuthorWhereUniqueInput
 }
 
 """
