@@ -66,27 +66,20 @@ const DraftEditorWrapper = styled.div`
       line-height: 1.5;
       text-align: justify;
       color: rgba(0, 9, 40, 0.87);
-      margin: 16px 0;
+      margin: 0 0 16px;
     }
 
     &::before {
-      display: flex;
-      content: '，︁，︁';
-      font-size: 60px;
-      color: rgba(0, 9, 40, 0.1);
-      letter-spacing: -0.75em;
-      line-height: 18px;
-      height: 25px;
-      padding-left: 40%;
+      content: url('https://upload.wikimedia.org/wikipedia/commons/2/25/Quote_left_font_awesome.svg');
+      display: block;
+      margin: 0 auto 16px auto;
+      width: 24px;
+      height: 24px;
     }
 
     ${({ theme }) => theme.breakpoint.md} {
       padding: 0;
       width: 480px;
-
-      span {
-        font-size: 24px;
-      }
     }
   }
   .public-DraftStyleDefault-ul {
@@ -123,7 +116,6 @@ const DraftEditorWrapper = styled.div`
   }
   /* code-block */
   .public-DraftStyleDefault-pre {
-    color: red;
   }
   .alignCenter * {
     text-align: center;
@@ -142,8 +134,8 @@ const customStyleMap = {
   },
 }
 
-const customStyleFn = (style: any) => {
-  return style.reduce((styles: any, styleName: string) => {
+const customStyleFn = (style) => {
+  return style.reduce((styles, styleName) => {
     if (styleName?.startsWith(CUSTOM_STYLE_PREFIX_FONT_COLOR)) {
       styles['color'] = styleName.split(CUSTOM_STYLE_PREFIX_FONT_COLOR)[1]
     }
@@ -156,7 +148,7 @@ const customStyleFn = (style: any) => {
   }, {})
 }
 
-const blockStyleFn = (editorState: any, block: any) => {
+const blockStyleFn = (editorState, block) => {
   const entityKey = block.getEntityAt(0)
   const entity = entityKey
     ? editorState.getCurrentContent().getEntity(entityKey)
@@ -192,18 +184,16 @@ const blockStyleFn = (editorState: any, block: any) => {
   return result
 }
 
-const blockRendererFn = (block: any) => {
+const blockRendererFn = (block) => {
   const atomicBlockObj = atomicBlockRenderer(block)
   return atomicBlockObj
 }
 
-/* @ts-ignore */
 export default function DraftRenderer({ rawContentBlock }) {
   const contentState = convertFromRaw(rawContentBlock)
   const editorState = EditorState.createWithContent(contentState, decorators)
 
   return (
-    /* @ts-ignore */
     <ThemeProvider theme={theme}>
       <DraftEditorWrapper>
         <Editor
@@ -213,7 +203,6 @@ export default function DraftRenderer({ rawContentBlock }) {
           blockRendererFn={blockRendererFn}
           customStyleFn={customStyleFn}
           readOnly
-          onChange={() => {}}
         />
       </DraftEditorWrapper>
     </ThemeProvider>
