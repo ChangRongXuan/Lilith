@@ -138,12 +138,6 @@ const listConfigurations = list({
           )
         },
       }),
-      ui: {
-        views: require.resolve('./views/embed-code'),
-        createView: {
-          fieldMode: 'hidden',
-        },
-      },
     }),
     previewButton: virtual({
       field: graphql.field({
@@ -157,9 +151,6 @@ const listConfigurations = list({
       }),
       ui: {
         views: require.resolve('./views/link-button'),
-        createView: {
-          fieldMode: 'hidden',
-        },
       },
     }),
   },

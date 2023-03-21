@@ -61,12 +61,6 @@ const listConfigurations = list({
           return `<div id='${item.slug}' style='scroll-margin-top: 100px;'>${item.originCode}</div>`
         },
       }),
-      ui: {
-        views: require.resolve('./views/embed-code'),
-        createView: {
-          fieldMode: 'hidden',
-        },
-      },
     }),
   },
   ui: {
