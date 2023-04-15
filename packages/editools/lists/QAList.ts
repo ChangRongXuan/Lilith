@@ -4,7 +4,13 @@ import { list, graphql } from '@keystone-6/core'
 import { text, relationship, virtual } from '@keystone-6/core/fields'
 
 const embedCodeWebpackAssets = embedCodeGen.loadWebpackAssets()
-const { allowRoles, admin, moderator, editor } = utils.accessControl
+const {
+  allowRoles,
+  admin,
+  moderator,
+  editor,
+  contributor,
+} = utils.accessControl
 
 const listConfigurations = list({
   fields: {
@@ -74,9 +80,9 @@ const listConfigurations = list({
   },
   access: {
     operation: {
-      query: allowRoles(admin, moderator, editor),
-      update: allowRoles(admin, moderator),
-      create: allowRoles(admin, moderator),
+      query: allowRoles(admin, moderator, editor, contributor),
+      update: allowRoles(admin, moderator, contributor),
+      create: allowRoles(admin, moderator, contributor),
       delete: allowRoles(admin),
     },
   },

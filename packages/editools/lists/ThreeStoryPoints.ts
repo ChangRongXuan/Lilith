@@ -71,6 +71,12 @@ const listConfigurations = list({
       }),
       ui: {
         views: require.resolve('./views/link-button'),
+<<<<<<< HEAD
+=======
+        createView: {
+          fieldMode: 'hidden',
+        },
+>>>>>>> b5b6c477c5e02a0900dfa804e4fa453943c7bab3
       },
     }),
     embedCode: virtual({
@@ -143,6 +149,15 @@ const listConfigurations = list({
           )
         },
       }),
+<<<<<<< HEAD
+=======
+      ui: {
+        views: require.resolve('./views/embed-code'),
+        createView: {
+          fieldMode: 'hidden',
+        },
+      },
+>>>>>>> b5b6c477c5e02a0900dfa804e4fa453943c7bab3
     }),
     preview: virtual({
       field: graphql.field({

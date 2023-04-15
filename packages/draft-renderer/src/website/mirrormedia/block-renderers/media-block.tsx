@@ -9,6 +9,7 @@ const styles = {
 
 const Audio = (props) => {
   return <audio controls src={props.src} style={styles.media} />
+  
 }
 
 const Image = (props) => {
